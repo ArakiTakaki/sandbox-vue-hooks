@@ -1,21 +1,25 @@
 <template>
   <div>
     <div class="index-component">
-      <div class="title">sample</div>
-      <div class="body">test</div>
-      <div class="footer">aiueo</div>
+      <button class="button" @click="event">toggl</button>
+      <div v-show="val" class="title">sample</div>
     </div>
   </div>
 </template>
 
-<script lang="ts">
+<script>
 import Vue from 'vue'
-import { Prop, Component } from 'vue-property-decorator'
+import { useData, useComputed } from 'vue-hooks'
+import useToggle from '../util/useToggle'
 
-@Component
-class Index extends Vue {
-  @Prop({ type: String })
-  readonly sample!: string
+const Index = {
+  hooks() {
+    const [val, event] = useToggle(false)
+    return {
+      val,
+      event
+    }
+  }
 }
 export default Index
 </script>
